@@ -6,6 +6,9 @@ class IntArray {
 
 public:
 
+	friend int *copyarray(int* ia,int sz);
+	friend int *copyarray(int sz);
+
 	 IntArray(int sz);           // 数组初始化为sz个元素，初值全为0
 
     IntArray( int *array, int sz ) ;  // 用静态数组array的前sz个元素初始化新数组
@@ -29,15 +32,27 @@ IntArray::~IntArray(){
 	delete this->ia;
 }
 
+int *copyarray(int *ix,int sz){
+	int *ia = new int[sz];
+	for (int i=0;i<sz;i++){
+		ia[i] = ix[i];
+	}
+	return ia;
+}
+
+int *copyarray(int sz){
+	int *ia = new int[sz];
+	for (int i=0;i<sz;i++){
+		ia[i] = 0;
+	}
+	return ia;
+}
+
 IntArray::IntArray( int sz ) { 
 
    size = sz;         // 设置数据成员 
 
-   ia = new int[ size ]; 
-
-   for ( int ix=0; ix < size; ++ix ) 
-
-      ia[ix] = 0;     // 初始化数组元素
+   this->ia = copyarray(sz);   // 初始化数组元素
 
 }
 
@@ -45,11 +60,7 @@ IntArray:: IntArray( int *array, int sz ) {
 
    size = sz;         // 设置数据成员 
 
-   ia = new int[ size ]; 
-
-   for ( int ix=0; ix < size; ++ix ) 
-
-       ia[ix ] = array[ ix ];    // 拷贝数据成员
+   this->ia = copyarray(array,sz);// 拷贝数据成员
 
 }
 
@@ -59,11 +70,7 @@ IntArray:: IntArray( const IntArray &rhs )
 
    size = rhs.size; 
 
-   ia = new int[ size ]; 
-
-   for (int ix = 0; ix < size; ix++ ) 
-
-       ia[ ix ] = rhs.ia[ ix ]; 
+   this->ia = copyarray(rhs.ia,this->size);
 
 }
 
