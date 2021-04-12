@@ -11,8 +11,8 @@ Myclass::Myclass(int a = 0,int b = 0){
 }
 
 void Myclass::print(){
-	std::cout<<"x = "<<x<<std::endl;
-	std::cout<<"y = "<<y<<std::endl;
+	std::cout<<"x = "<<this->x<<std::endl;
+	std::cout<<"y = "<<this->y<<std::endl;
 }
 
 
