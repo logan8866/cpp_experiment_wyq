@@ -14,6 +14,8 @@ public:
 
     void printAll();
 
+    ~IntArray();
+
 private:
 
 	int *ia;
@@ -21,6 +23,11 @@ private:
 	int size;
 
 };
+
+IntArray::~IntArray(){
+	cout<<"delete!"<<endl;
+	delete this->ia;
+}
 
 IntArray::IntArray( int sz ) { 
 
