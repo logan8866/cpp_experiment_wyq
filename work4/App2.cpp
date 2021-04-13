@@ -10,8 +10,8 @@ class Body{
 			this->r = r;
 			this->h = h;
 		}
-		virtual double caculate_flache();
-		virtual double caculate_volumen();
+		virtual double caculate_flache(){};
+		virtual double caculate_volumen(){};
 };
 
 class Quadrat:public Body{
