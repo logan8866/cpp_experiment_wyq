@@ -3,10 +3,10 @@
 class Shape{
 	public:
 
-		double primeter();
-		double area();
-		double volume();
-		`
+		virtual double primeter();
+		virtual double area();
+		virtual double volume();
+		virtual void show();
 };
 
 class Rechteck:public Shape{
@@ -40,7 +40,7 @@ class Box:public Rechteck{
 	protected:
 		double hohe;
 	public:
-		Box();
+		Box():Rechteck();
 		Box(double lange, double weite,double hohe):Rechteck(lange,weite);
 };
 
@@ -68,7 +68,13 @@ class Pyramide:public Triangle{
 		Pyramide(double lange_1,double lange_2,double angle,double hohe):Triangle(lange_1,lange_2,angle);
 };
 
-class Prism:public 
+class Prism:public Triangle{
+	protected:
+		double hohe;
+	public:
+		Prism();
+		Prism(double lange_1,double lange_2,double angle,double hohe):Triangle(lange_1,lange_2,angle);
+};
 
 
 
