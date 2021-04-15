@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Apr  3 2018) (Linux)
-; This file was generated Thu Apr 15 09:58:08 2021
+; This file was generated Thu Apr 15 19:51:20 2021
 ;--------------------------------------------------------
 	.module test
 	.optsdcc -mmcs51 --model-small
@@ -347,31 +347,47 @@ _delay:
 ;	 function main
 ;	-----------------------------------------
 _main:
-;	test.c:11: while(1){
-00107$:
-;	test.c:12: if (P3_0==0){
-	jb	_P3_0,00104$
-;	test.c:13: P1_0 = 0;
+;	test.c:11: P0_0 = 0;
+	clr	_P0_0
+;	test.c:12: P3_2 = 1;
+	setb	_P3_2
+;	test.c:13: P3_3 = 0;
+	clr	_P3_3
+;	test.c:14: while(1){
+00110$:
+;	test.c:15: if (P1_6==0&&P1_7==1){
+	jb	_P1_6,00102$
+	jnb	_P1_7,00102$
+;	test.c:16: P1_0 = 0;
 	clr	_P1_0
-;	test.c:14: delay();
+;	test.c:17: delay();
 	lcall	_delay
-;	test.c:15: P1_0 = 1;
+;	test.c:18: P1_0 = 1;
 	setb	_P1_0
-;	test.c:16: delay();
+;	test.c:19: delay();
 	lcall	_delay
-	sjmp	00107$
-00104$:
-;	test.c:18: else if (P3_1==0){
-	jb	_P3_1,00107$
-;	test.c:19: P1_1 = 0;
+00102$:
+;	test.c:21: if (P1_7==0&&P1_6==1){
+	jb	_P1_7,00105$
+	jnb	_P1_6,00105$
+;	test.c:22: P1_1 = 0;
 	clr	_P1_1
-;	test.c:20: delay();
+;	test.c:23: delay();
 	lcall	_delay
-;	test.c:21: P1_1 = 1;
+;	test.c:24: P1_1 = 1;
 	setb	_P1_1
-;	test.c:22: delay();
+;	test.c:25: delay();
 	lcall	_delay
-	sjmp	00107$
+00105$:
+;	test.c:27: if (P1_7==1&P1_6==1){
+	mov	c,_P1_7
+	anl	c,_P1_6
+	jnc	00110$
+;	test.c:28: P1_1 = 1;
+	setb	_P1_1
+;	test.c:29: P1_0 = 1;
+	setb	_P1_0
+	sjmp	00110$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)

@@ -543,7 +543,7 @@ Area Table
   15 GSINIT5                                    size      0   flags   20
   16 GSINIT                                     size      0   flags   20
   17 GSFINAL                                    size      3   flags   20
-  18 CSEG                                       size     33   flags   20
+  18 CSEG                                       size     47   flags   20
   19 CONST                                      size      0   flags   20
   1A XINIT                                      size      0   flags   20
   1B CABS                                       size      0   flags   28

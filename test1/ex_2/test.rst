@@ -1,7 +1,7 @@
                                       1 ;--------------------------------------------------------
                                       2 ; File Created by SDCC : free open source ANSI-C Compiler
                                       3 ; Version 3.5.0 #9253 (Apr  3 2018) (Linux)
-                                      4 ; This file was generated Thu Apr 15 09:58:08 2021
+                                      4 ; This file was generated Thu Apr 15 19:51:20 2021
                                       5 ;--------------------------------------------------------
                                       6 	.module test
                                       7 	.optsdcc -mmcs51 --model-small
@@ -347,32 +347,48 @@
                                     347 ;	 function main
                                     348 ;	-----------------------------------------
       000077                        349 _main:
-                                    350 ;	test.c:11: while(1){
-      000077                        351 00107$:
-                                    352 ;	test.c:12: if (P3_0==0){
-      000077 20 B0 0C         [24]  353 	jb	_P3_0,00104$
-                                    354 ;	test.c:13: P1_0 = 0;
-      00007A C2 90            [12]  355 	clr	_P1_0
-                                    356 ;	test.c:14: delay();
-      00007C 12 00 62         [24]  357 	lcall	_delay
-                                    358 ;	test.c:15: P1_0 = 1;
-      00007F D2 90            [12]  359 	setb	_P1_0
-                                    360 ;	test.c:16: delay();
-      000081 12 00 62         [24]  361 	lcall	_delay
-      000084 80 F1            [24]  362 	sjmp	00107$
-      000086                        363 00104$:
-                                    364 ;	test.c:18: else if (P3_1==0){
-      000086 20 B1 EE         [24]  365 	jb	_P3_1,00107$
-                                    366 ;	test.c:19: P1_1 = 0;
-      000089 C2 91            [12]  367 	clr	_P1_1
-                                    368 ;	test.c:20: delay();
-      00008B 12 00 62         [24]  369 	lcall	_delay
-                                    370 ;	test.c:21: P1_1 = 1;
-      00008E D2 91            [12]  371 	setb	_P1_1
-                                    372 ;	test.c:22: delay();
-      000090 12 00 62         [24]  373 	lcall	_delay
-      000093 80 E2            [24]  374 	sjmp	00107$
-                                    375 	.area CSEG    (CODE)
-                                    376 	.area CONST   (CODE)
-                                    377 	.area XINIT   (CODE)
-                                    378 	.area CABS    (ABS,CODE)
+                                    350 ;	test.c:11: P0_0 = 0;
+      000077 C2 80            [12]  351 	clr	_P0_0
+                                    352 ;	test.c:12: P3_2 = 1;
+      000079 D2 B2            [12]  353 	setb	_P3_2
+                                    354 ;	test.c:13: P3_3 = 0;
+      00007B C2 B3            [12]  355 	clr	_P3_3
+                                    356 ;	test.c:14: while(1){
+      00007D                        357 00110$:
+                                    358 ;	test.c:15: if (P1_6==0&&P1_7==1){
+      00007D 20 96 0D         [24]  359 	jb	_P1_6,00102$
+      000080 30 97 0A         [24]  360 	jnb	_P1_7,00102$
+                                    361 ;	test.c:16: P1_0 = 0;
+      000083 C2 90            [12]  362 	clr	_P1_0
+                                    363 ;	test.c:17: delay();
+      000085 12 00 62         [24]  364 	lcall	_delay
+                                    365 ;	test.c:18: P1_0 = 1;
+      000088 D2 90            [12]  366 	setb	_P1_0
+                                    367 ;	test.c:19: delay();
+      00008A 12 00 62         [24]  368 	lcall	_delay
+      00008D                        369 00102$:
+                                    370 ;	test.c:21: if (P1_7==0&&P1_6==1){
+      00008D 20 97 0D         [24]  371 	jb	_P1_7,00105$
+      000090 30 96 0A         [24]  372 	jnb	_P1_6,00105$
+                                    373 ;	test.c:22: P1_1 = 0;
+      000093 C2 91            [12]  374 	clr	_P1_1
+                                    375 ;	test.c:23: delay();
+      000095 12 00 62         [24]  376 	lcall	_delay
+                                    377 ;	test.c:24: P1_1 = 1;
+      000098 D2 91            [12]  378 	setb	_P1_1
+                                    379 ;	test.c:25: delay();
+      00009A 12 00 62         [24]  380 	lcall	_delay
+      00009D                        381 00105$:
+                                    382 ;	test.c:27: if (P1_7==1&P1_6==1){
+      00009D A2 97            [12]  383 	mov	c,_P1_7
+      00009F 82 96            [24]  384 	anl	c,_P1_6
+      0000A1 50 DA            [24]  385 	jnc	00110$
+                                    386 ;	test.c:28: P1_1 = 1;
+      0000A3 D2 91            [12]  387 	setb	_P1_1
+                                    388 ;	test.c:29: P1_0 = 1;
+      0000A5 D2 90            [12]  389 	setb	_P1_0
+      0000A7 80 D4            [24]  390 	sjmp	00110$
+                                    391 	.area CSEG    (CODE)
+                                    392 	.area CONST   (CODE)
+                                    393 	.area XINIT   (CODE)
+                                    394 	.area CABS    (ABS,CODE)
