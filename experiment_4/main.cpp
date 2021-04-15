@@ -5,6 +5,7 @@ using namespace std;
 int main()
 
 {
+	int i = 0;
 
 	Geometric_shape *gs[]= { new	Circle(10), 
 
@@ -22,7 +23,7 @@ int main()
 
 	new 	T_prism(3,4,5,3) };
 
-    	for (int i=0;i<8;i++)
+    	for (i=0;i<8;i++)
 
 	{
 

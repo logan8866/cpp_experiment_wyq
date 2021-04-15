@@ -1,47 +1,54 @@
 
 
-class Shape{
+class Geometric_shape{
 	public:
 
-		virtual double primeter();
+		virtual double perimeter();
 		virtual double area();
 		virtual double volume();
-		virtual void show();
+		virtual void Show();
 };
 
-class Rechteck:public Shape{
+class Rectangle:public Geometric_shape{
 	protected:
 		double lange;
 		double weite;
 	public:
-		Rechteck();
-		Rechteck(double lange,double weite);
+		Rectangle();
+		Rectangle(double lange,double weite);
+		double perimeter();
+		double area();
 };
 
-class Circle:public Shape{
+class Circle:public Geometric_shape{
 	protected:
 		double redius;
 	public:
 		Circle();
 		Circle(double redius);
+		double perimeter();
+                double area();
 };
 
-class Triangle:public Shape{
+class Triangle:public Geometric_shape{
 	protected:
 		double lange_1;
 		double lange_2;
-		double angle_12;
+		double lange_3;
 	public:
 		Triangle();
-		Triangle(double lange_1,double lange_2,double angle_12);
-}
+		Triangle(double lange_1,double lange_2,double lange_3);
+		double perimeter();
+                double area();
+};
 
-class Box:public Rechteck{
+class Box:public Rectangle{
 	protected:
 		double hohe;
 	public:
-		Box():Rechteck();
-		Box(double lange, double weite,double hohe):Rechteck(lange,weite);
+		Box();
+		Box(double lange, double weite,double hohe);
+		double volume();
 };
 
 class Cylinder:public Circle{
@@ -49,7 +56,8 @@ class Cylinder:public Circle{
 		double hohe;
 	public:
 		Cylinder();
-		Cylinder(double redius,double hohe):Circle(redius);
+		Cylinder(double redius,double hohe);
+		double volume();
 };
 
 class Cone:public Circle{
@@ -57,23 +65,26 @@ class Cone:public Circle{
 		double hohe;
 	public:
 		Cone();
-		Cone(double redius):Circle(redius);
+		Cone(double redius,double hohe);
+		double volume();
 };
 
-class Pyramide:public Triangle{
+class T_pyramid:public Triangle{
 	protected:
 		double hohe;
 	public:
-		Pyramide();
-		Pyramide(double lange_1,double lange_2,double angle,double hohe):Triangle(lange_1,lange_2,angle);
+		T_pyramid();
+		T_pyramid(double lange_1,double lange_2,double lange_3,double hohe);
+		double volume();
 };
 
-class Prism:public Triangle{
+class T_prism:public Triangle{
 	protected:
 		double hohe;
 	public:
-		Prism();
-		Prism(double lange_1,double lange_2,double angle,double hohe):Triangle(lange_1,lange_2,angle);
+		T_prism();
+		T_prism(double lange_1,double lange_2,double lange_3,double hohe);
+		double volume();
 };
 
 

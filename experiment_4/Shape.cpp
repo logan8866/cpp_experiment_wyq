@@ -2,44 +2,44 @@
 #include<iostream>
 #include<cmath>
 
-double Shape::primeter(){
+double Geometric_shape::perimeter(){
 	return 0;
 }
 
-double Shape::area(){
+double Geometric_shape::area(){
 	return 0;
 }
 
-double Shape::volume(){
-	std::cout<<"it has no volume!"<<std::endl;
+double Geometric_shape::volume(){
+	//std::cout<<"it has no volume!"<<std::endl;
 	return 0;
 }
 
-void Shape::show(){
+void Geometric_shape::Show(){
 	std::cout<<"this is a shape"<<std::endl;
 }
 
-Rechteck::Rechteck(){
+Rectangle::Rectangle(){
 	this->lange = 0;
 	this->weite = 0;
 }
 
-Rechteck::Rechteck(double lange,double weite){
+Rectangle::Rectangle(double lange,double weite){
 	this->lange = lange;
 	this->weite = weite;
 }
 
-double Rechteck::primeter(){
+double Rectangle::perimeter(){
 	return 2*(this->lange+this->weite);
 }
 
-double Rechteck::area(){
+double Rectangle::area(){
 	return this->lange*this->weite;
 }
-
-void Rechteck::show(){
-	std::cout<<"this is a Rechteck"<<this->lange<<"&"<<this->weite<<std::endl;
-}
+/*
+void Rectangle::Show(){
+	std::cout<<"this is a Rectangle"<<this->lange<<"&"<<this->weite<<std::endl;
+}*/
 
 Circle::Circle(){
 	this->redius = 0;
@@ -49,7 +49,7 @@ Circle::Circle(double redius){
 	this->redius = redius;
 }
 
-double Circle::primeter(){
+double Circle::perimeter(){
 	return 2*3.14*this->redius;
 }
 
@@ -60,29 +60,29 @@ double Circle::area(){
 Triangle::Triangle(){
 	this->lange_1 = 0;
 	this->lange_2 = 0;
-	this->angle_12 = 0;
+	this->lange_3 = 0;
 }
 
-Triangle::Triangle(double lange_1,double lange_2,double angle_12){
+Triangle::Triangle(double lange_1,double lange_2,double lange_3){
 	this->lange_1 = lange_1;
 	this->lange_2 = lange_2;
-	this->angle_12 = angle_12;
+	this->lange_3 = lange_3;
 }
 
 double Triangle::area(){
-	return 0.5*sin(this->angle_12)*this->lange_1*this->lange_2;
+	double p = this->perimeter()/2;
+	return pow(p*(p-this->lange_1)*(p-this->lange_2)*(p-this->lange_3),0.5);
 }
 
-double Triangle::primeter(){
-	double lange_3 = pow((pow(this->lange_1,2)+pow(this->lange_2,2)-2*this->lange_1*this->lange_2*cos(this->angle_12)),0.5);
-	return this->lange_1+this->lange_2+lange_3;
+double Triangle::perimeter(){
+	return this->lange_1+this->lange_2+this->lange_3;
 }
 
-Box::Box():Rechteck(){
+Box::Box():Rectangle(){
 	this->hohe = 0;
 }
 
-Box::Box(double lange, double weite,double hohe):Rechteck(lange,weite){
+Box::Box(double lange, double weite,double hohe):Rectangle(lange,weite){
 	this->hohe = hohe;
 }
 
@@ -90,20 +90,52 @@ double Box::volume(){
 	return this->lange*this->weite*this->hohe;
 }
 
+Cylinder::Cylinder():Circle(){
+	this->hohe = 0;
+}
+
+Cylinder::Cylinder(double redius,double hohe):Circle(redius){
+	this->hohe = hohe;
+}
+
 double Cylinder::volume(){
 	return this->Circle::area()*this->hohe;
+}
+
+Cone::Cone():Circle(){
+	this->hohe = 0;
+}
+
+Cone::Cone(double redius,double hohe):Circle(redius){
+	this->hohe = hohe;
 }
 
 double Cone::volume(){
 	return this->Circle::area()*this->hohe/3;
 }
 
-double Pyramide::volume(){
+T_pyramid::T_pyramid():Triangle(){
+	this->hohe = 0;
+}
+
+T_pyramid::T_pyramid(double lange_1,double lange_2,double lange_3,double hohe):Triangle(lange_1,lange_2,lange_3){
+	this->hohe = hohe;
+}
+
+double T_pyramid::volume(){
 	return this->Triangle::area()*this->hohe/3;
 }
 
-double Prism::volume(){
-	return this->Circle::area()*this->hohe;
+T_prism::T_prism():Triangle(){
+	this->hohe = 0;
+}
+
+T_prism::T_prism(double lange_1,double lange_2,double lange_3,double hohe):Triangle(lange_1,lange_2,lange_3){
+	this->hohe = hohe;
+}
+
+double T_prism::volume(){
+	return this->area()*this->hohe;
 }
 
 
