@@ -1,6 +1,6 @@
 #include <stddef.h>
-#ifndef C5
-#define C5
+#ifndef CHAIN
+#define CHAIN
 #include"chain.h"
 #endif
 #include<iostream>
@@ -27,6 +27,12 @@ ChainNode<T>::~ChainNode(){
 }
 
 template<class T>
+ChainNode<T>::ChainNode(){
+	this->next = NULL;
+	this->element = 0;
+}
+
+template<class T>
 ChainNode<T>::ChainNode(const T &element){
 	this->element = element;
 	this->next = NULL;
@@ -37,13 +43,21 @@ ChainNode<T>::ChainNode(const T &element,ChainNode<T>* next){
 	this->next = next;
 }
 template<class T>
-ChainNode<T>::ChainNode(ChainNode<T> *chainnode){
-	this->element = chainnode->element;
-	this->next = chainnode->next;
+ChainNode<T>::ChainNode(ChainNode<T> &chainnode){
+	this->element = chainnode.element;
+	this->next = chainnode.next;
+}
+
+template<class T>
+Chain<T>::Chain(int i){
+	this->length = 0;
+	this->head = NULL;
+	this->end = NULL;
 }
 
 template<class T>
 Chain<T>::Chain(){
+	std::cout<<"CHain"<<std::endl;
 	this->length = 0;
 	T element;
 	std::cin>>element;
@@ -52,7 +66,7 @@ Chain<T>::Chain(){
 	this->length++;
 	while(true){
 		std::cin>>element;
-		if ((int)element==48){
+		if ((int)element==-1){
 			break;
 		}
 		this->end->next = new ChainNode<T>(element);
@@ -61,15 +75,15 @@ Chain<T>::Chain(){
 	}	
 }
 template<class T>
-Chain<T>::Chain(Chain<T>* chain){
-	this->length = chain->length;
+Chain<T>::Chain(Chain<T>& chain){
+	this->length = chain.length;
 	ChainNode<T>* c1;
 	ChainNode<T>* c2;
-	c1 = new ChainNode<T>(chain->head);
+	c1 = new ChainNode<T>(*chain.head);
 	this->head = c1;
 	int i;
 	for (i=0;i<this->length-1;i++){
-		c2 = new ChainNode<T>(c1->next);
+		c2 = new ChainNode<T>(*(c1->next));
 		c1->next = c2;
 		c1 = c1->next;
 	}
@@ -85,6 +99,7 @@ int Chain<T>::end_insert(ChainNode<T>* chainnode){
 	}else{
 		this->end->next = chainnode;
 		this->end = chainnode;
+		chainnode->next = NULL;
 		this->length++;
 		return 1;
 	}

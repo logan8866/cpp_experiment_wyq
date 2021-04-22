@@ -1,5 +1,12 @@
-
+#ifndef CHAIN5
+#define CHAIN5
 #include"chain5.h"
+#endif
+
+
+template<class T>
+Chain5<T>::Chain5(int i):Chain<T>(i){}
+
 
 template<class T>
 void Chain5<T>::delete_many(int index_start, int index_end){

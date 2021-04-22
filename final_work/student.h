@@ -1,5 +1,13 @@
+#ifndef CHAIN5
+#define CHAIN5
 #include"chain5.h"
+#endif
+#ifndef CHAIN
+#define CHAIN
+#include"chain.h"
+#endif
 #include<string>
+using namespace std;
 
 template<class T>
 class Student:public ChainNode<T>{
@@ -8,14 +16,20 @@ class Student:public ChainNode<T>{
 		Student();
 		Student(string name,T &element);
 		Student(string name,T &element,ChainNode<T> *next);
-		Student(ChainNode<T> &st);
+		Student(Student<T> &st);
 };
 
 template<class T>
-class StudentManagement:public Chain5{
+class StudentManagement:public Chain5<T>{
 	public:
-		ChainNode* search();
-		void statitic();
+		StudentManagement();
+		StudentManagement(int i);
+		StudentManagement(StudentManagement<T>& sm);
+		StudentManagement<T> &search();
+		void show_all();
+		void statitic(int n);
 		void Sort();
+		void save();
+		void load();
 };
 
