@@ -19,7 +19,7 @@ using namespace std;
 int main(){
 	StudentManagement<double> *sm;
 	fstream f;
-        f.open("./student.dat",ios::app);
+        f.open("./student.dat");
         if (!f){
                 cout<<"没有数据文件，您需要初始化数据"<<endl;
 		sm = new StudentManagement<double>;
@@ -35,7 +35,7 @@ int main(){
 	string name;
 
 	while(1){
-		cout<<"选择操作：1-添加数据 2-查看所有数据 3-对数据分段统计 4-对数据排序 5-保存当前数据 6-退出"<<endl;
+		cout<<"选择操作：1-添加数据 2-查看所有数据 3-对数据分段统计 4-对数据排序 5-保存当前数据 6-查找数据 7-退出"<<endl;
 		cout<<"选择操作："<<endl;
 		cin>>i;
 		if (i==1){
@@ -63,7 +63,11 @@ int main(){
 			sm->save();
 		}
 		else if (i==6){
+			sm->search().show_all();
+		}
+		else if (i==7){
 			delete sm;
+			return 0;
 		}
 	}
 		

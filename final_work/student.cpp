@@ -247,13 +247,20 @@ void StudentManagement<T>::load(){
 	f.open("./student.dat",ios::in);
 	f>>this->length;
 	int i;
-	this->head = new Student<T>();
-	this->end = this->head;
-	for (i=0;i<this->length;i++){
-		f>>this->end->element;
-		//f>>this->end->name;
-		this->end->next = new Student<T>();
-		this->end = this->end->next;
+	Student<T>* st;
+	string name;
+	T element;
+	f>>element;
+	f>>name;
+	st = new Student<T>(name,element);
+	this->head = st;
+	this->end = st;
+	for (i=1;i<this->length;i++){
+		f>>element;
+		f>>name;
+		st = new Student<T>(name,element);
+		this->end->next = st;
+		this->end = st;
 	}
 }
 
