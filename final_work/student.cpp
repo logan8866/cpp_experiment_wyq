@@ -224,12 +224,12 @@ template<class T>
 void StudentManagement<T>::save(){
 	int i;
 	fstream f;
-	f.open("./student.dat",ios::app);
+	f.open("./student.dat",ios::out | ios::trunc);
 	if (!f){
 		ofstream fout("./student.dat");
 		if (fout){
 			fout.close();
-			f.open("./student.dat");
+			f.open("./student.dat",ios::out | ios::trunc);
 		}
 	}
 	Student<T> *now = (Student<T>*)this->head;
@@ -244,21 +244,24 @@ void StudentManagement<T>::save(){
 template<class T>
 void StudentManagement<T>::load(){
 	fstream f;
-	f.open("./student.dat",ios::app);
+	f.open("./student.dat",ios::in);
 	f>>this->length;
 	int i;
 	this->head = new Student<T>();
 	this->end = this->head;
 	for (i=0;i<this->length;i++){
 		f>>this->end->element;
-		f>>this->end->name;
+		//f>>this->end->name;
 		this->end->next = new Student<T>();
 		this->end = this->end->next;
 	}
 }
 
 		
-
+template<class T>
+StudentManagement<T>::~StudentManagement(){
+	this->save();
+}
 
 
 

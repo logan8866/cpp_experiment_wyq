@@ -22,6 +22,7 @@ class Student:public ChainNode<T>{
 template<class T>
 class StudentManagement:public Chain5<T>{
 	public:
+		~StudentManagement();
 		StudentManagement();
 		StudentManagement(int i);
 		StudentManagement(StudentManagement<T>& sm);

@@ -17,22 +17,55 @@
 using namespace std;
 
 int main(){
-	StudentManagement<int> sm;
-	//sm.show_all();
-	int i = 99;
-	Student<int> *s;
-	s = new Student<int>("kan",i);
-        i = sm.end_insert(s);
-	sm.statitic(5);
-	sm.Sort();
-	sm.show_all();
-	sm.save();
-
+	StudentManagement<double> *sm;
+	fstream f;
+        f.open("./student.dat",ios::app);
+        if (!f){
+                cout<<"没有数据文件，您需要初始化数据"<<endl;
+		sm = new StudentManagement<double>;
+        }
+	else{
+		cout<<"正在从文件中加载数据....."<<endl;
+		sm = new StudentManagement<double>(0);
+		sm->load();
+	}
 	
-	/*
-	StudentManagement<int> sm2(0);
-	sm2 = sm.search();
-	cout<<sm2.length<<endl;
-	sm2.show_all();*/
+	int i;
+	double leistung;
+	string name;
+
+	while(1){
+		cout<<"选择操作：1-添加数据 2-查看所有数据 3-对数据分段统计 4-对数据排序 5-保存当前数据 6-退出"<<endl;
+		cout<<"选择操作："<<endl;
+		cin>>i;
+		if (i==1){
+			cout<<"输入学生成绩：";
+			cin>>leistung;
+			cout<<"输入学生姓名：";
+			cin>>name;
+			Student<double> *st;
+			st = new Student<double>(name,leistung);
+			sm->end_insert(st);
+		}
+		else if (i==2){
+			sm->show_all();
+		}
+		else if (i==3){
+			int num;
+			cout<<"数据分为几段：";
+			cin>>num;
+			sm->statitic(num);
+		}
+		else if (i==4){
+			sm->Sort();
+		}
+		else if (i==5){
+			sm->save();
+		}
+		else if (i==6){
+			delete sm;
+		}
+	}
+		
 	return 0;
 }
